@@ -3,6 +3,7 @@ import './App.css';
 import logo from './logo.svg';
 import HomePage from './Components/HomePage';
 import ContactList from './Components/ContactList';
+import Udemy from './Components/Udemy';
 import {BrowserRouter, NavLink, Route} from 'react-router-dom';
 
 
@@ -21,11 +22,13 @@ class App extends Component {
                     <br/>
                     <nav>
                         <NavLink activeClassName="selected"  to="/home">Home</NavLink> &nbsp;
-                        <NavLink activeClassName="selected" to="/contacts">Contacts</NavLink>
+                        <NavLink activeClassName="selected" to="/contacts">Contacts</NavLink> &nbsp;
+                        <NavLink activeClassName="selected" to="/udemy">Udemy</NavLink>
                     </nav>
                     <br/>
                     <Route path="/home" component={HomePage}></Route>
                     <Route path="/contacts" component={ContactList}></Route>
+                    <Route path="/udemy" component={Udemy}></Route>
                 </div>
             </BrowserRouter>
         );

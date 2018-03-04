@@ -19,16 +19,17 @@ class ContactList extends Component {
                     </button>
                 </div>
                 <div>
-
-                    <h1>Featured Contacts</h1>
                     <ContactSection key="favoriteContacts"
-                                    contacts={this.state.filteredContacts.filter(contact => contact.tags.includes('favorite'))}/>
+                                    contacts={this.state.filteredContacts.filter(contact => contact.tags.includes('favorite'))}>
+                        Featured Contacts
+                    </ContactSection>
                 </div>
                 <br/>
                 <div>
-                    <h1>Other Contacts</h1>
                     <ContactSection key="otherContacts"
-                                    contacts={this.state.filteredContacts.filter(contact => !contact.tags.includes('favorite'))}/>
+                                    contacts={this.state.filteredContacts.filter(contact => !contact.tags.includes('favorite'))}>
+                        Other contacts
+                    </ContactSection>
                 </div>
                 <br/>
             </section>
