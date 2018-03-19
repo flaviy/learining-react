@@ -11,11 +11,11 @@ class Udemy extends Component {
         ]
     }
 
-    switchNameHandler = () =>  {
+    switchNameHandler = (newName) =>  {
         console.log('Button was clicked');
         this.setState({
             persons: [
-                {id: 1, name: "Maximillian", "age": 28},
+                {id: 1, name: newName, "age": 28},
                 {id: 2, name: "Manu", "age": 29},
                 {id: 3, name: "Stephanie", "age": 26}
             ]
@@ -29,9 +29,14 @@ class Udemy extends Component {
                 <p>This is really working!</p>
                 {
                     this.state.persons.map( person =>
-                    <Person key={person.id} name={person.name} age={person.age}/>
+                    <Person
+                        click={this.switchNameHandler.bind(this, 'Maximilian')}
+                        key={person.id}
+                        name={person.name}
+                        age={person.age}/>
                 )}
-                <button onClick={this.switchNameHandler}>Switch Name </button>
+                {/* could be not efficient */}
+                <button onClick={() => this.switchNameHandler('Alesandro!!!')}>Switch Name </button>
             </div>
         );
         // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
