@@ -22,6 +22,17 @@ class Udemy extends Component {
         });
     }
 
+    onChangeHandler = (event) =>  {
+        console.log(event.target.dataId);
+        this.setState({
+            persons: [
+                {id: 1, name: "Sophie", "age": 26},
+                {id: 2, name: event.target.value, "age": 129},
+                {id: 3, name: "Stephanie", "age": 26}
+            ]
+        });
+    }
+
     render() {
         return (
             <div className="App">
@@ -33,10 +44,12 @@ class Udemy extends Component {
                         click={this.switchNameHandler.bind(this, 'Maximilian')}
                         key={person.id}
                         name={person.name}
+                        changed={this.onChangeHandler}
                         age={person.age}/>
                 )}
                 {/* could be not efficient */}
                 <button onClick={() => this.switchNameHandler('Alesandro!!!')}>Switch Name </button>
+                <br/> <br/>
             </div>
         );
         // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
