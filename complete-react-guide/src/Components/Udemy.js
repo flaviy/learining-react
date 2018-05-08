@@ -10,7 +10,8 @@ class Udemy extends Component {
             {id: 1, name : "Max", "age" : 28},
             {id: 2, name : "Manu", "age" : 29},
             {id: 3, name : "Stephanie", "age" : 26}
-        ]
+        ],
+        showPersons : false
     }
 
     switchNameHandler = (newName) =>  {
@@ -24,6 +25,11 @@ class Udemy extends Component {
         });
     }
 
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({showPersons : !doesShow})
+    }
+
     onChangeHandler = (event) =>  {
         this.setState({
             persons: [
@@ -34,6 +40,14 @@ class Udemy extends Component {
         });
     }
 
+    deletePersonHandler = (personIndex) =>  {
+        //2 ways to create a copy of array
+        //const persons = this.state.persons.slice();
+        const persons = [...this.state.persons];
+        persons.splice(personIndex,1);
+        this.setState({persons : persons});
+    }
+
     render() {
         const style = {
             backgroundColor: "white",
@@ -42,25 +56,45 @@ class Udemy extends Component {
             cursor: 'pointer',
             padding : '10px'
         }
+        let persons = null;
+        if(this.state.showPersons) {
+            persons = this.state.persons.map((person, index) =>
+                <Person
+                    click={() => this.deletePersonHandler(index)}
+                    key={person.id}
+                    name={person.name}
+                    age={person.age}/>
+            )
+        }
         return (
             <BrowserRouter>
                 <div className="Udemy">
-                    {
-                        this.state.persons.map(person =>
+                    <button
+                        style={style}
+                        //onClick={() => this.switchNameHandler('Alesandro!!!')}
+                        onClick={this.togglePersonsHandler}
+                    >
+                        Show Persons
+                    </button>
+
+
+                    {this.state.showPersons ?
+                        <div>
+
+                            {this.state.persons.map(person =>
                             <Person
                                 click={this.switchNameHandler.bind(this, 'Maximilian')}
                                 key={person.id}
                                 name={person.name}
                                 changed={this.onChangeHandler}
                                 age={person.age}/>
-                        )}
-                    {/* could be not efficient */}
-                    <button
-                        style={style}
-                        onClick={() => this.switchNameHandler('Alesandro!!!')}>
-                        Switch Name
-                    </button>
+                            )}
+                        </div>
+                        : null
+                    }
                     <br/> <br/>
+
+                    {persons}
 
                     <Route path="/assignment1" component={Assignment1}></Route>
                     <nav>
