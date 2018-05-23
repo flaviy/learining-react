@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './../App.css';
 import Person from './Person';
 import Assignment1 from './UserInputOutput/Assignment1';
+import Assignment2 from './Assignment2/Assignment2';
 import {BrowserRouter, NavLink, Route} from 'react-router-dom';
 
 class Udemy extends Component {
@@ -30,13 +31,20 @@ class Udemy extends Component {
         this.setState({showPersons : !doesShow})
     }
 
-    onChangeHandler = (event) =>  {
+    onChangeHandler = (event, id) =>  {
+        const personIndex = this.state.persons.findIndex(p => {
+            return p.id = id;
+        })
+
+        const person = {...this.state.persons[personIndex]};
+        //another way
+        //const person = Object.assign({}, this.state.persons[personIndex]);
+
+        person.name = event.target.value;
+        const persons = [...this.state.persons]
+        persons[personIndex] = person;
         this.setState({
-            persons: [
-                {id: 1, name: "Sophie", "age": 26},
-                {id: 2, name: event.target.value, "age": 129},
-                {id: 3, name: "Stephanie", "age": 26}
-            ]
+            persons: persons
         });
     }
 
@@ -63,7 +71,9 @@ class Udemy extends Component {
                     click={() => this.deletePersonHandler(index)}
                     key={person.id}
                     name={person.name}
-                    age={person.age}/>
+                    age={person.age}
+                    changed={(event) => this.onChangeHandler(event, person.id)}
+                />
             )
         }
         return (
@@ -78,27 +88,29 @@ class Udemy extends Component {
                     </button>
 
 
-                    {this.state.showPersons ?
+              {/*      {this.state.showPersons ?
                         <div>
 
                             {this.state.persons.map(person =>
                             <Person
                                 click={this.switchNameHandler.bind(this, 'Maximilian')}
-                                key={person.id}
-                                name={person.name}
-                                changed={this.onChangeHandler}
+                                key={person.id + '-2'}
+                                name={person.name + '2'}
+                                changed={(event) => this.onChangeHandler(event, person.id)}
                                 age={person.age}/>
                             )}
                         </div>
                         : null
-                    }
+                    }*/}
                     <br/> <br/>
 
                     {persons}
 
                     <Route path="/assignment1" component={Assignment1}></Route>
+                    <Route path="/assignment2" component={Assignment2}></Route>
                     <nav>
-                        <NavLink activeClassName="selected" to="/assignment1">Assignment1</NavLink>
+                        <NavLink activeClassName="selected" to="/assignment1">Assignment1</NavLink><br/>
+                        <NavLink activeClassName="selected" to="/assignment2">Assignment2</NavLink>
                     </nav>
                 </div>
             </BrowserRouter>
