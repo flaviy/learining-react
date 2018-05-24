@@ -29,3 +29,11 @@ a.selected,  a.selected:hover{
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}

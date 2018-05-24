@@ -58,7 +58,7 @@ class Udemy extends Component {
 
     render() {
         const style = {
-            backgroundColor: "white",
+            backgroundColor: "green",
             border: '1px sold gray',
             boxShadow: '0 2px 3px #ccc',
             cursor: 'pointer',
@@ -75,7 +75,16 @@ class Udemy extends Component {
                     changed={(event) => this.onChangeHandler(event, person.id)}
                 />
             )
+            style.backgroundColor = 'red';
         }
+        const classes = [];
+        if (this.state.persons.length <= 2) {
+            classes.push('red');
+        }
+        if (this.state.persons.length <= 1) {
+            classes.push('bold');
+        }
+
         return (
             <BrowserRouter>
                 <div className="Udemy">
@@ -86,7 +95,8 @@ class Udemy extends Component {
                     >
                         Show Persons
                     </button>
-
+                    <br/><br/>
+                    <div className={classes.join(' ')}> It's really work! </div>
 
               {/*      {this.state.showPersons ?
                         <div>
@@ -102,7 +112,7 @@ class Udemy extends Component {
                         </div>
                         : null
                     }*/}
-                    <br/> <br/>
+                    <br/>
 
                     {persons}
 
