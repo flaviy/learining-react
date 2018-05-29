@@ -3,6 +3,7 @@ import './../App.css';
 import Person from './Person';
 import Assignment1 from './UserInputOutput/Assignment1';
 import Assignment2 from './Assignment2/Assignment2';
+import Radium, {StyleRoot} from 'radium';
 import {BrowserRouter, NavLink, Route} from 'react-router-dom';
 
 class Udemy extends Component {
@@ -62,7 +63,14 @@ class Udemy extends Component {
             border: '1px sold gray',
             boxShadow: '0 2px 3px #ccc',
             cursor: 'pointer',
-            padding : '10px'
+            padding : '10px',
+            ':hover' : {
+                backgroundColor : 'lightgreen',
+                border: '2px solid gray',
+            },
+            '@media (min-width : 500px)' : {
+                width : '450px'
+            }
         }
         let persons = null;
         if(this.state.showPersons) {
@@ -87,18 +95,19 @@ class Udemy extends Component {
 
         return (
             <BrowserRouter>
-                <div className="Udemy">
-                    <button
-                        style={style}
-                        //onClick={() => this.switchNameHandler('Alesandro!!!')}
-                        onClick={this.togglePersonsHandler}
-                    >
-                        Show Persons
-                    </button>
-                    <br/><br/>
-                    <div className={classes.join(' ')}> It's really work! </div>
+                <StyleRoot>
+                    <div className="Udemy">
+                        <button
+                            style={style}
+                            //onClick={() => this.switchNameHandler('Alesandro!!!')}
+                            onClick={this.togglePersonsHandler}
+                        >
+                            Show Persons
+                        </button>
+                        <br/><br/>
+                        <div className={classes.join(' ')}> It's really work!</div>
 
-              {/*      {this.state.showPersons ?
+                        {/*      {this.state.showPersons ?
                         <div>
 
                             {this.state.persons.map(person =>
@@ -112,17 +121,18 @@ class Udemy extends Component {
                         </div>
                         : null
                     }*/}
-                    <br/>
+                        <br/>
 
-                    {persons}
+                        {persons}
 
-                    <Route path="/assignment1" component={Assignment1}></Route>
-                    <Route path="/assignment2" component={Assignment2}></Route>
-                    <nav>
-                        <NavLink activeClassName="selected" to="/assignment1">Assignment1</NavLink><br/>
-                        <NavLink activeClassName="selected" to="/assignment2">Assignment2</NavLink>
-                    </nav>
-                </div>
+                        <Route path="/assignment1" component={Assignment1}></Route>
+                        <Route path="/assignment2" component={Assignment2}></Route>
+                        <nav>
+                            <NavLink activeClassName="selected" to="/assignment1">Assignment1</NavLink><br/>
+                            <NavLink activeClassName="selected" to="/assignment2">Assignment2</NavLink>
+                        </nav>
+                    </div>
+                </StyleRoot>
             </BrowserRouter>
 
         );
@@ -130,4 +140,4 @@ class Udemy extends Component {
     }
 }
 
-export default Udemy;
+export default Radium(Udemy);
