@@ -3,7 +3,7 @@ import './../App.css';
 import Person from './Person';
 import Assignment1 from './UserInputOutput/Assignment1';
 import Assignment2 from './Assignment2/Assignment2';
-import Radium, {StyleRoot} from 'radium';
+//import Radium, {StyleRoot} from 'radium';
 import {BrowserRouter, NavLink, Route} from 'react-router-dom';
 
 class Udemy extends Component {
@@ -64,13 +64,13 @@ class Udemy extends Component {
             boxShadow: '0 2px 3px #ccc',
             cursor: 'pointer',
             padding : '10px',
-            ':hover' : {
+/*            ':hover' : {
                 backgroundColor : 'lightgreen',
                 border: '2px solid gray',
             },
             '@media (min-width : 500px)' : {
                 width : '450px'
-            }
+            }*/
         }
         let persons = null;
         if(this.state.showPersons) {
@@ -95,7 +95,7 @@ class Udemy extends Component {
 
         return (
             <BrowserRouter>
-                <StyleRoot>
+
                     <div className="Udemy">
                         <button
                             style={style}
@@ -132,7 +132,6 @@ class Udemy extends Component {
                             <NavLink activeClassName="selected" to="/assignment2">Assignment2</NavLink>
                         </nav>
                     </div>
-                </StyleRoot>
             </BrowserRouter>
 
         );
@@ -140,4 +139,4 @@ class Udemy extends Component {
     }
 }
 
-export default Radium(Udemy);
+export default Udemy;
