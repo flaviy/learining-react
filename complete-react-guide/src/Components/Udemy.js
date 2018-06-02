@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import './../App.css';
+//import './../App.css';
+import classes from './../App.css';
 import Person from './Person';
 import Assignment1 from './UserInputOutput/Assignment1';
 import Assignment2 from './Assignment2/Assignment2';
 //import Radium, {StyleRoot} from 'radium';
 import {BrowserRouter, NavLink, Route} from 'react-router-dom';
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 class Udemy extends Component {
     state = {
@@ -64,6 +66,7 @@ class Udemy extends Component {
             boxShadow: '0 2px 3px #ccc',
             cursor: 'pointer',
             padding : '10px',
+            //Only with Radium
 /*            ':hover' : {
                 backgroundColor : 'lightgreen',
                 border: '2px solid gray',
@@ -75,22 +78,22 @@ class Udemy extends Component {
         let persons = null;
         if(this.state.showPersons) {
             persons = this.state.persons.map((person, index) =>
+                <ErrorBoundary key={person.id}>
                 <Person
                     click={() => this.deletePersonHandler(index)}
-                    key={person.id}
                     name={person.name}
                     age={person.age}
                     changed={(event) => this.onChangeHandler(event, person.id)}
-                />
+                /></ErrorBoundary>
             )
             style.backgroundColor = 'red';
         }
-        const classes = [];
+        const joinedClasses = [];
         if (this.state.persons.length <= 2) {
-            classes.push('red');
+            joinedClasses.push(classes.red);
         }
         if (this.state.persons.length <= 1) {
-            classes.push('bold');
+            joinedClasses.push(classes.bold);
         }
 
         return (
@@ -105,7 +108,7 @@ class Udemy extends Component {
                             Show Persons
                         </button>
                         <br/><br/>
-                        <div className={classes.join(' ')}> It's really work!</div>
+                        <div className={joinedClasses.join(' ')}> It's really work!</div>
 
                         {/*      {this.state.showPersons ?
                         <div>

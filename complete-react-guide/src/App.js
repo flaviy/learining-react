@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import classes from './App.css';
 import logo from './logo.svg';
 import HomePage from './Components/HomePage';
 import ContactList from './Components/ContactList';
@@ -13,11 +13,11 @@ class App extends Component {
         return (
 
             <BrowserRouter>
-                <div className="App">
+                <div className={classes.App}>
                     <h1>Hello DevMeetings!</h1>
-                    <div className="App-header">
-                        <img src={logo} className="App-logo" alt="logo"/>
-                        <h1 className="App-title">Welcome to React</h1>
+                    <div className={classes["App-header"]}>
+                        <img src={logo} className={classes["App-logo"]} alt="logo"/>
+                        <h1 className={classes["App-title"]}>Welcome to React</h1>
                     </div>
                     <br/>
                     <nav>
