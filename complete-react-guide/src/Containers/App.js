@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import classes from './App.css';
-import logo from './logo.svg';
-import HomePage from './Components/HomePage';
-import ContactList from './Components/ContactList';
-import Udemy from './Components/Udemy';
+import logo from '../logo.svg';
+import HomePage from '../Components/HomePage';
+import ContactList from '../Components/ContactList';
+import Udemy from '../Components/Udemy';
 import {BrowserRouter, NavLink, Route} from 'react-router-dom';
 
 
