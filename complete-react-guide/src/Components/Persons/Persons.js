@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary';
 import Person from "./Person/Person";
 
-const Persons = (props) => props.persons.map((person, index) =>(
-    <ErrorBoundary key={person.id}>
-        <Person
-            key={'person_'+person.id}
-            click={() => props.clicked(index)}
-            name={person.name}
-            age={person.age}
-            changed={(event) => props.changed(event, person.id)}
-        />
-    </ErrorBoundary>
-));
+class Persons extends Component {
+    render() {
+        return  this.props.persons.map((person, index) =>(
+            <ErrorBoundary key={person.id}>
+                <Person
+                    position = {index}
+                    key={'person_'+person.id}
+                    click={() => this.props.clicked(index)}
+                    name={person.name}
+                    age={person.age}
+                    changed={(event) => this.props.changed(event, person.id)}
+                />
+            </ErrorBoundary>
+        ));
+    }
+}
 
 export default Persons;

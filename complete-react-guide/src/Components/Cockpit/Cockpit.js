@@ -43,6 +43,7 @@ const cockpit = (props) => {
             <div className={joinedClasses.join(' ')}> It's really work!</div>
 
             <br/>
+            <button onClick={props.login}>Log In</button>
         </div>
     )
 }

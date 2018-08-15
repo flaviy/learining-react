@@ -1,16 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classes from './Person.css';
+import {AuthContext} from "../../Udemy";
 
-const person = ( props ) => {
-    return (
-        <div className={classes.Person}>
-            <p onClick={props.click}>I'm {props.name} and I am {props.age} years old!</p>
-            <p>{props.children}</p>
-{/*
-            <input type="text" data-id={props.id} onChange={props.changed} value={props.name} />
-*/}
+class Person extends  Component {
+
+    constructor(props){
+        super(props);
+        this.inputElement = React.createRef();
+    }
+
+    componentDidMount(){
+        if(this.props.position === 0) {
+            this.inputElement.current.focus();
+        }
+    }
+
+    render() {
+        return <div className={classes.Person}>
+            <AuthContext.Consumer>
+                {auth => auth ? "I'm authenticated" : ""}
+            </AuthContext.Consumer>
+            <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
+            <p>{this.props.children}</p>
+            <input
+                type="text"
+                //reference
+                //ref={(inp) => {this.inputElement = inp}}
+                ref = {this.inputElement}
+                data-id={this.props.id}
+                onChange={this.props.changed}
+                value={this.props.name}
+            />
         </div>
-    )
+    }
 };
 
-export default person;
+export default Person;
